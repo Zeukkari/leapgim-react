@@ -19,39 +19,37 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-        <table style={{padding: 3, borderSpacing: 3}}>
-          <colgroup>
-            <col style={{width: 150}} />
-            <col style={{width: 50}} />
-          </colgroup>
+        <p>Mouse: </p>
+        <table>
           <tbody>
             <tr>
+              <td>Left</td>
+              <td>{this.state.left}</td>
+            </tr>
+            <tr>
+              <td>Right</td>
+              <td>{this.state.right}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Sensor: </p>
+        <table>
+          <tbody>
+            <tr>
+              <th>Elapsed time:</th>
+              <td>{this.state.timer}</td>
+            </tr>
+            <tr>
+              <th>Hand visible:</th>
+              <td>{this.state.handVisible}</td>
+            </tr>
+            <tr>
               <th>Hand confidence: </th>
-              <td style={{textIndent: 20}} colSpan={2}><meter value={this.state.meter} max={100} optimum={90} low={50} min={0} id="meter" /></td>
+              <td><meter value={this.state.meter} max={100} optimum={90} low={50} min={0} /></td>
             </tr>
-            <tr>
-              <td style={{padding: 15}} colSpan={3} />
-            </tr>
-            <tr>
-              <th style={{textAlign: 'center'}} rowSpan={2}>Mouse: </th>
-              <td style={{textIndent: 20}}>Left</td>
-              <td><div id="left" className="stat">{this.state.left}</div></td> </tr>
-            <tr>
-              <td style={{textIndent: 20}}>Right</td>
-              <td><div id="right" className="stat">{this.state.right}</div></td>
-            </tr>
-            <tr>
-              <td style={{padding: 15}} colSpan={3} />
-            </tr>
-            <tr>
-              <th style={{textAlign: 'center'}}>Elapsed time:</th>
-              <td style={{textIndent: 20}} colSpan={2}><div id="timer" className="stat">{this.state.timer}</div></td>
-            </tr>
-            <tr>
-              <th style={{textAlign: 'center'}}>Hand visible:</th>
-              <td style={{textIndent: 20}} colSpan={2}><div id="handVisible" className="stat">{this.state.handVisible}</div></td>
-            </tr>
-          </tbody></table>
+          </tbody>
+        </table>
       </div>
     );
   }

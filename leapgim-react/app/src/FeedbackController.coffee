@@ -14,29 +14,21 @@ class FeedbackController
         audio = new Audio(clip)
         audio.play()
 
-    # visualNotification: (domID, msg) ->
-    #     #console.info "Visual notification", domID, msg
-    #     document.getElementById(domID)?.innerHTML = msg
-
     visualNotification: (viewID, msg) ->
-        #console.info "Visual notification", domID, msg
-        #document.getElementById(domID)?.innerHTML = msg
-        if(window.viewModel?.[viewID]?)
-            console.log "View model: ", window.viewModel
-            console.log "View ID: ", viewID
-            window.viewModel[viewID] = msg
-            window.main.setState(window.viewModel)
+        # console.log "View model: ", window.viewModel
+        # console.log "View ID: ", viewID
+        window.viewModel[viewID] = msg
+        window.main.setState window.viewModel
 
-    time: (elapsed) ->
-        document.getElementById('timer').innerHTML = elapsed
+    time: (elapsed) =>
+        @visualNotification 'timer', elapsed
 
     handVisible: (visible) ->
-        document.getElementById('handVisible').innerHTML = visible
+        @visualNotification 'handVisible', visible
 
     confidenceMeter: (confidence) ->
         adjustedConfidence = confidence * 100
-        meter = document.getElementById('meter')
-        meter.value = adjustedConfidence
+        @visualNotification 'meter', adjustedConfidence
 
 
 window.FeedbackController = FeedbackController

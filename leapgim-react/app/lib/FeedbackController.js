@@ -1,9 +1,11 @@
-var FeedbackController, config;
+var FeedbackController, config,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 config = window.config;
 
 FeedbackController = (function() {
   function FeedbackController() {
+    this.time = bind(this.time, this);
     console.log("Feedback control ready");
   }
 
@@ -14,28 +16,22 @@ FeedbackController = (function() {
   };
 
   FeedbackController.prototype.visualNotification = function(viewID, msg) {
-    var ref;
-    if ((((ref = window.viewModel) != null ? ref.viewID : void 0) != null)) {
-      console.log("View model: ", window.viewModel);
-      console.log("View ID: ", viewID);
-      window.viewModel[viewID] = msg;
-      return window.main.setState(window.viewModel);
-    }
+    window.viewModel[viewID] = msg;
+    return window.main.setState(window.viewModel);
   };
 
   FeedbackController.prototype.time = function(elapsed) {
-    return document.getElementById('timer').innerHTML = elapsed;
+    return this.visualNotification('timer', elapsed);
   };
 
   FeedbackController.prototype.handVisible = function(visible) {
-    return document.getElementById('handVisible').innerHTML = visible;
+    return this.visualNotification('handVisible', visible);
   };
 
   FeedbackController.prototype.confidenceMeter = function(confidence) {
-    var adjustedConfidence, meter;
+    var adjustedConfidence;
     adjustedConfidence = confidence * 100;
-    meter = document.getElementById('meter');
-    return meter.value = adjustedConfidence;
+    return this.visualNotification('meter', adjustedConfidence);
   };
 
   return FeedbackController;

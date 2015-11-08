@@ -19,12 +19,14 @@ injectTapEventPlugin();
 //window.stateButton = stateButton
 
 var viewModel = {
-	meter: 'null',
+	meter: 20,
 	left: 'null',
-	right: 'null2',
+	right: 'null',
 	timer: 'null',
 	handVisible: 'null'
 }
 
 var Main = require('./components/Main.jsx');
-var main = ReactDOM.render(<Main viewModel={viewModel}/>, document.getElementById('content'));
+var main = ReactDOM.render(<Main />, document.getElementById('content'));
+window.viewModel = viewModel
+window.main = main

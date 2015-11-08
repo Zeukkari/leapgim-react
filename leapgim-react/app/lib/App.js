@@ -84,4 +84,4 @@ window.loadProfile = function(profile) {
 
 window.loadProfile(defaultProfile);
 
-//# sourceMappingURL=maps/App.js.map
+//# sourceMappingURL=app/maps/App.js.map

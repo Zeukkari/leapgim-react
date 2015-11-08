@@ -13,9 +13,14 @@ FeedbackController = (function() {
     return audio.play();
   };
 
-  FeedbackController.prototype.visualNotification = function(domID, msg) {
+  FeedbackController.prototype.visualNotification = function(viewID, msg) {
     var ref;
-    return (ref = document.getElementById(domID)) != null ? ref.innerHTML = msg : void 0;
+    if ((((ref = window.viewModel) != null ? ref.viewID : void 0) != null)) {
+      console.log("View model: ", window.viewModel);
+      console.log("View ID: ", viewID);
+      window.viewModel[viewID] = msg;
+      return window.main.setState(window.viewModel);
+    }
   };
 
   FeedbackController.prototype.time = function(elapsed) {
@@ -39,4 +44,4 @@ FeedbackController = (function() {
 
 window.FeedbackController = FeedbackController;
 
-//# sourceMappingURL=maps/FeedbackController.js.map
+//# sourceMappingURL=app/maps/FeedbackController.js.map

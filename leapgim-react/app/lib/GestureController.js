@@ -372,4 +372,4 @@ GestureController = (function() {
 
 window.GestureController = GestureController;
 
-//# sourceMappingURL=maps/GestureController.js.map
+//# sourceMappingURL=app/maps/GestureController.js.map

@@ -1,0 +1,68 @@
+{
+  "name": "react-nodewebkit",
+  "private": true,
+  "version": "0.0.1",
+  "description": "react node-webkit starter project",
+  "keywords": [],
+  "window": {
+    "icon": "app/images/icon.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 600,
+    "position": "center",
+    "resizable": true
+  },
+  "webkit": {
+    "plugin": false
+  },
+  "main": "app/index.html",
+  "dependencies": {
+    "coffee-script": "~1.10.0",
+    "exec-sh": "^0.2.0",
+    "material-ui": "^0.13.1",
+    "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.2",
+    "react-addons-pure-render-mixin": "^0.14.2",
+    "react-addons-transition-group": "^0.14.2",
+    "react-addons-update": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-tap-event-plugin": "^0.2.1",
+    "robotjs": "^0.3.1",
+    "yamljs": "^0.2.4",
+    "zmq": "^2.13.0"
+  },
+  "devDependencies": {
+    "browserify": "^11.1.0",
+    "chai": "^3.2.0",
+    "mocha": "^2.0.1",
+    "nw-builder": "^2.0.2",
+    "nw-gyp": "^0.12.3",
+    "reactify": "^1.1.1",
+    "watchify": "^3.4.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7"
+  },
+  "scripts": {
+    "start": "watchify app/jsx/index.jsx -o app/bundle.js -v",
+    "test": "mocha",
+    "app": "nwbuild -o ../builds -v 0.12.2 -p linux64 --run .",
+    "build": "./build/build",
+    "clean": "rm -rf build/cache app/bundle.js",
+    "rebuild-robotjs": "( cd node_modules/robotjs && nw-gyp configure rebuild --target=0.12.3 )",
+    "rebuild-zmq": "( cd node_modules/zmq && nw-gyp configure rebuild --target=0.12.3 )",
+    "install": "npm run rebuild-zmq && npm run rebuild-robotjs"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  }
+}

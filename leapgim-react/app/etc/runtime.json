@@ -1,0 +1,9 @@
+// forever/development.json
+{
+    // Comments are supported
+    "uid": "leapgim",
+    "append": true,
+    "watch": true,
+    "script": "index.html",
+    "sourceDir": "/home/ahotim/git-leapgim/leapgim/client"
+}
